@@ -14,7 +14,7 @@ namespace MicroService.Domain.Extensions
                 responseContent = httpResponseMessage.Content.ReadAsStringAsync().Result;
                 error = null;
 
-                return JsonSerializer.Deserialize<T>(responseContent, new JsonSerializerOptions { WriteIndented = true });
+                return JsonSerializer.Deserialize<T>(responseContent);
             }
             catch (Exception e)
             {

@@ -1,5 +1,5 @@
-﻿using MicroService.Infrastructure.Options;
-using MicroService.Infrastructure.ThirdPartyServices.OpenLibraryService;
+﻿using MicroService.Infrastructure.OpenLibraryService;
+using MicroService.Infrastructure.Options;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
 using Xunit;
@@ -21,16 +21,13 @@ namespace MicroService.Tests.UnitTests.Infrastructure
                 }));
 
             // Act.
-            var bookInformation = await service.GetBookDetails(new IsbnRequest
-            {
-                Isbn = "0451526538"
-            });
+            var result = await service.GetBookDetails("0451526538");
 
             // Assert.
-            Assert.NotNull(bookInformation);
-            Assert.Equal("The adventures of Tom Sawyer", bookInformation.Title);
-            Assert.Equal("0451526538", bookInformation.Isbn);
-            Assert.Empty(bookInformation.Errors);
+            Assert.Equal("The adventures of Tom Sawyer", result.Value.Title);
+            Assert.Equal("0451526538", result.Value.Isbn.Isbn10);
+            Assert.Equal("9780451526533", result.Value.Isbn.Isbn13);
+            Assert.Null(result.Error);
         }
     }
 }

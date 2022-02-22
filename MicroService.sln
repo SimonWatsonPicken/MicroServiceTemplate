@@ -2,13 +2,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.Api", "MicroService.Api\MicroService.Api.csproj", "{6A25A93A-ECDD-4AEC-BF98-60C0071C4718}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.WebApi", "MicroService.WebApi\MicroService.WebApi.csproj", "{6A25A93A-ECDD-4AEC-BF98-60C0071C4718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.Domain", "MicroService.Domain\MicroService.Domain.csproj", "{42C2A17E-958C-4A28-AB4A-2263EE3E2014}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.Domain", "MicroService.Domain\MicroService.Domain.csproj", "{42C2A17E-958C-4A28-AB4A-2263EE3E2014}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.Infrastructure", "MicroService.Infrastructure\MicroService.Infrastructure.csproj", "{4DF17ABB-986E-4212-9451-F9A35E04889A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.Infrastructure", "MicroService.Infrastructure\MicroService.Infrastructure.csproj", "{4DF17ABB-986E-4212-9451-F9A35E04889A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.Tests", "MicroService.Tests\MicroService.Tests.csproj", "{6FCB376C-7398-4A0D-A43F-4AAFD5F34CC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.Tests", "MicroService.Tests\MicroService.Tests.csproj", "{6FCB376C-7398-4A0D-A43F-4AAFD5F34CC5}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C797232F-29A4-481C-9AD7-276C69EC060E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.Application", "MicroService.Application\MicroService.Application.csproj", "{549494AA-507F-458F-A65A-07405A020F49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +36,14 @@ Global
 		{6FCB376C-7398-4A0D-A43F-4AAFD5F34CC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FCB376C-7398-4A0D-A43F-4AAFD5F34CC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FCB376C-7398-4A0D-A43F-4AAFD5F34CC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C797232F-29A4-481C-9AD7-276C69EC060E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C797232F-29A4-481C-9AD7-276C69EC060E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C797232F-29A4-481C-9AD7-276C69EC060E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C797232F-29A4-481C-9AD7-276C69EC060E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{549494AA-507F-458F-A65A-07405A020F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{549494AA-507F-458F-A65A-07405A020F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{549494AA-507F-458F-A65A-07405A020F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{549494AA-507F-458F-A65A-07405A020F49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,8 @@
-using MicroService.Api.Application;
-using MicroService.Api.Application.Books;
+using MediatR;
+using MicroService.Application.Queries;
+using MicroService.Application.Services;
+using MicroService.Infrastructure.OpenLibraryService;
 using MicroService.Infrastructure.Options;
-using MicroService.Infrastructure.ThirdPartyServices.OpenLibraryService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +15,7 @@ using Serilog;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
-namespace MicroService.Api
+namespace MicroService.WebApi
 {
     [ExcludeFromCodeCoverage]
     public class Startup
@@ -24,7 +25,7 @@ namespace MicroService.Api
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -42,10 +43,8 @@ namespace MicroService.Api
             });
 
             // Command handlers.
-            services.AddScoped<ICommandHandler<BookCommand, BookUiEntity>, BookCommandHandler>();
 
             // Command validators.
-            services.AddScoped<IValidator<BookCommand>, BookCommandValidator>();
 
             // HTTP clients.
             services.AddHttpClient<IOpenLibraryService, OpenLibraryService>();
@@ -56,6 +55,8 @@ namespace MicroService.Api
 
             // Services.
             services.AddScoped<IOpenLibraryService, OpenLibraryService>();
+
+            services.AddMediatR(typeof(GetBookByIsbnQuery));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,16 +65,19 @@ namespace MicroService.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1.0.0/swagger.json", "MicroService.Api v1.0.0"));
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.RoutePrefix = string.Empty;
+                c.SwaggerEndpoint("/swagger/v1.0.0/swagger.json", "MicroService.Api v1.0.0");
+            });
 
             // Ensure this line is after any health check middleware.
             app.UseSerilogRequestLogging();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
